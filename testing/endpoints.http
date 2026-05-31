@@ -1,0 +1,17 @@
+@baseUrl = https://probable-space-parakeet-7vrrwjp95x993xrp5-8000.app.github.dev
+
+### 1. Obtener token
+# @name login
+POST {{baseUrl}}/token
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=admin123
+
+### 2. Verificar token
+# Usa el token generado en el paso anterior (asumiendo que la respuesta JSON tiene la propiedad 'access_token')
+GET {{baseUrl}}/verify
+Authorization: Bearer {{login.response.body.access_token}}
+
+### 3. Refrescar token
+POST {{baseUrl}}/refresh
+Authorization: Bearer {{login.response.body.access_token}}
