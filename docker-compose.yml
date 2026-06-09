@@ -6,6 +6,7 @@ services:
       - "8000:8000"
     environment:
       - SECRET_KEY=CHANGE_ME_IN_PRODUCTION_USE_A_STRONG_RANDOM_KEY
+      - CORS_ORIGINS=http://localhost:3000
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "python -c 'import urllib.request; urllib.request.urlopen(\"http://localhost:8000/\")' || exit 1"]
@@ -13,3 +14,12 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+
+  frontend:
+    build: ./frontend
+    container_name: jwt-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

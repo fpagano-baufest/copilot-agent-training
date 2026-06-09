@@ -1,0 +1,74 @@
+/* Design system tokens based on DESIGN.md */
+:root {
+  /* Colors */
+  --color-canvas: #000000;
+  --color-surface-card: #0a0a0c;
+  --color-surface-elevated: #101012;
+  --color-surface-deep: #06060a;
+  --color-ink: #fcfdff;
+  --color-body: rgba(252, 253, 255, 0.86);
+  --color-charcoal: rgba(252, 253, 255, 0.7);
+  --color-mute: #a1a4a5;
+  --color-ash: #888e90;
+  --color-primary: #fcfdff;
+  --color-primary-on: #000000;
+  --color-surface-light: #f1f7fe;
+  --color-hairline: rgba(255, 255, 255, 0.06);
+  --color-hairline-strong: rgba(255, 255, 255, 0.14);
+  --color-accent-blue: #3b9eff;
+  --color-accent-green: #11ff99;
+  --color-accent-red: #ff2047;
+  --color-accent-orange: #ff801f;
+  --color-accent-orange-glow: rgba(255, 89, 0, 0.22);
+  --color-accent-blue-glow: rgba(0, 117, 255, 0.34);
+
+  /* Typography */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-xxl: 32px;
+  --spacing-xxxl: 48px;
+  --spacing-section: 96px;
+
+  /* Border radius */
+  --rounded-sm: 6px;
+  --rounded-md: 8px;
+  --rounded-lg: 12px;
+  --rounded-full: 9999px;
+
+  color-scheme: dark;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

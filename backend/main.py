@@ -2,6 +2,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional
 import os
 from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
 from passlib.context import CryptContext
@@ -18,6 +19,12 @@ if SECRET_KEY == "dev-secret-key-DO-NOT-USE-IN-PRODUCTION":
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_SECONDS = 300
 
+# Allowed origins for CORS (configurable via environment variable)
+CORS_ORIGINS = os.getenv(
+    "CORS_ORIGINS",
+    "http://localhost:5173,http://localhost:3000"
+).split(",")
+
 # Password hashing context
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -27,6 +34,15 @@ app = FastAPI(
     title="JWT Authentication API",
     description="API with JWT authentication using FastAPI",
     version="1.0.0"
+)
+
+# CORS middleware — allows the React dev server and production frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=CORS_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["Authorization", "Content-Type"],
 )
 
 # Models
