@@ -8,14 +8,15 @@ Aplicación de ejemplo con autenticación JWT:
 ## Requisitos
 
 - Python 3.10+
+- Poetry
 - Node.js 20+
 
 ## Ejecución del backend
 
 ```bash
 cd backend
-pip install fastapi uvicorn python-jose[cryptography] passlib[bcrypt] python-multipart bcrypt==4.0.1
-uvicorn main:app --reload
+poetry install
+poetry run uvicorn main:app --reload
 ```
 
 Backend disponible en `http://localhost:8000`.

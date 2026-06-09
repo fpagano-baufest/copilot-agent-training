@@ -4,7 +4,26 @@ import './App.css'
 
 const TOKEN_KEY = 'auth_token'
 const USER_KEY = 'auth_user'
+const EXPIRES_AT_KEY = 'auth_expires_at'
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+
+function clearSession() {
+  sessionStorage.removeItem(TOKEN_KEY)
+  sessionStorage.removeItem(USER_KEY)
+  sessionStorage.removeItem(EXPIRES_AT_KEY)
+}
+
+function getSessionExpiration() {
+  const expiresAt = Number(sessionStorage.getItem(EXPIRES_AT_KEY))
+  return Number.isFinite(expiresAt) ? expiresAt : null
+}
+
+function hasValidSession() {
+  const token = sessionStorage.getItem(TOKEN_KEY)
+  const expiresAt = getSessionExpiration()
+
+  return Boolean(token) && expiresAt !== null && expiresAt > Date.now()
+}
 
 function LoginPage() {
   const navigate = useNavigate()
@@ -14,9 +33,12 @@ function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    if (sessionStorage.getItem(TOKEN_KEY)) {
+    if (hasValidSession()) {
       navigate('/welcome', { replace: true })
+      return
     }
+
+    clearSession()
   }, [navigate])
 
   const handleSubmit = async (event) => {
@@ -39,8 +61,15 @@ function LoginPage() {
       }
 
       const data = await response.json()
+      const expiresAt = Date.now() + Number(data.expires_in) * 1000
+
+      if (!Number.isFinite(expiresAt) || expiresAt <= Date.now()) {
+        throw new Error('No se pudo iniciar la sesión')
+      }
+
       sessionStorage.setItem(TOKEN_KEY, data.access_token)
       sessionStorage.setItem(USER_KEY, username)
+      sessionStorage.setItem(EXPIRES_AT_KEY, String(expiresAt))
       navigate('/welcome', { replace: true })
     } catch (submitError) {
       setError(submitError.message)
@@ -91,10 +120,8 @@ function LoginPage() {
 function WelcomePage() {
   const navigate = useNavigate()
   const username = sessionStorage.getItem(USER_KEY) ?? 'usuario'
-
   const handleLogout = () => {
-    sessionStorage.removeItem(TOKEN_KEY)
-    sessionStorage.removeItem(USER_KEY)
+    clearSession()
     navigate('/login', { replace: true })
   }
 
@@ -112,9 +139,30 @@ function WelcomePage() {
 }
 
 function ProtectedRoute({ children }) {
-  if (!sessionStorage.getItem(TOKEN_KEY)) {
+  const [expiresAt] = useState(() => getSessionExpiration())
+  const [isAuthorized, setIsAuthorized] = useState(() => {
+    const token = sessionStorage.getItem(TOKEN_KEY)
+    return Boolean(token) && expiresAt !== null && expiresAt > Date.now()
+  })
+
+  useEffect(() => {
+    if (!isAuthorized || expiresAt === null) {
+      clearSession()
+      return
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      clearSession()
+      setIsAuthorized(false)
+    }, expiresAt - Date.now())
+
+    return () => window.clearTimeout(timeoutId)
+  }, [expiresAt, isAuthorized])
+
+  if (!isAuthorized) {
     return <Navigate to="/login" replace />
   }
+
   return children
 }
 
