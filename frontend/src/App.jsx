@@ -8,8 +8,8 @@ const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
 
 function LoginPage() {
   const navigate = useNavigate()
-  const [username, setUsername] = useState('admin')
-  const [password, setPassword] = useState('admin123')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 

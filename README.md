@@ -13,7 +13,7 @@ Aplicación de ejemplo con autenticación JWT:
 ## Ejecución del backend
 
 ```bash
-cd /home/runner/work/copilot-agent-training/copilot-agent-training/fpagano-baufest/copilot-agent-training/backend
+cd backend
 pip install fastapi uvicorn python-jose[cryptography] passlib[bcrypt] python-multipart bcrypt==4.0.1
 uvicorn main:app --reload
 ```
@@ -28,7 +28,7 @@ Credenciales de prueba:
 ## Ejecución del frontend
 
 ```bash
-cd /home/runner/work/copilot-agent-training/copilot-agent-training/fpagano-baufest/copilot-agent-training/frontend
+cd frontend
 npm install
 npm run dev
 ```

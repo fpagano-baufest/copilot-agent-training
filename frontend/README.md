@@ -5,7 +5,7 @@ Frontend en React para autenticación contra el backend FastAPI.
 ## Ejecutar
 
 ```bash
-cd /home/runner/work/copilot-agent-training/copilot-agent-training/fpagano-baufest/copilot-agent-training/frontend
+cd frontend
 npm install
 npm run dev
 ```
