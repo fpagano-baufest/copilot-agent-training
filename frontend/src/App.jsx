@@ -129,10 +129,10 @@ const CERTIFICATIONS = [
   {
     id: 'ai-103',
     exam: 'AI-103',
-    title: 'Developing AI Apps and Agents on Azure',
+    title: 'Azure AI Apps and Agents Developer Associate (beta)',
     level: 'Intermedio',
-    description: 'Nuevo examen 2026. Diseña, gestiona y despliega agentes y soluciones de IA utilizando Microsoft Azure AI Foundry con Python.',
-    url: 'https://learn.microsoft.com/credentials/certifications/azure-ai-engineer/',
+    description: 'Certificación (beta) 2026 enfocada en diseñar, desarrollar y desplegar soluciones y agentes de IA en Azure usando Python y Microsoft Foundry.',
+    url: 'https://learn.microsoft.com/credentials/certifications/azure-ai-apps-and-agents-developer-associate/',
   },
   {
     id: 'az-104',
