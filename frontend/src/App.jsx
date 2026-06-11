@@ -123,7 +123,7 @@ const CERTIFICATIONS = [
     exam: 'AI-901',
     title: 'Azure AI Fundamentals',
     level: 'Principiante',
-    description: 'Conocimiento conceptual de soluciones de IA en Azure. Nuevo examen actualizado para 2026 que incluye habilidades de IA generativa, reemplazando a AI-900.',
+    description: 'Conocimiento conceptual de soluciones de IA en Azure. Certificación actualizada en 2026; revisa los exámenes AI-900 y AI-901 para conocer los cambios más recientes.',
     url: 'https://learn.microsoft.com/credentials/certifications/azure-ai-fundamentals/',
   },
   {
