@@ -117,6 +117,57 @@ function LoginPage() {
   )
 }
 
+const CERTIFICATIONS = [
+  {
+    id: 'ai-901',
+    exam: 'AI-901',
+    title: 'Azure AI Fundamentals',
+    level: 'Principiante',
+    description: 'Conocimiento conceptual de soluciones de IA en Azure. Nuevo examen actualizado para 2026 que incluye habilidades de IA generativa, reemplazando a AI-900.',
+    url: 'https://learn.microsoft.com/credentials/certifications/azure-ai-fundamentals/',
+  },
+  {
+    id: 'ai-103',
+    exam: 'AI-103',
+    title: 'Developing AI Apps and Agents on Azure',
+    level: 'Intermedio',
+    description: 'Nuevo examen 2026. Diseña, gestiona y despliega agentes y soluciones de IA utilizando Microsoft Azure AI Foundry con Python.',
+    url: 'https://learn.microsoft.com/credentials/certifications/azure-ai-engineer/',
+  },
+  {
+    id: 'az-104',
+    exam: 'AZ-104',
+    title: 'Azure Administrator Associate',
+    level: 'Intermedio',
+    description: 'Configura, gestiona, asegura y administra funciones clave de Microsoft Azure para entornos de producción en la nube.',
+    url: 'https://learn.microsoft.com/credentials/certifications/azure-administrator/',
+  },
+  {
+    id: 'az-204',
+    exam: 'AZ-204',
+    title: 'Azure Developer Associate',
+    level: 'Intermedio',
+    description: 'Construye soluciones end-to-end en Azure: Functions, aplicaciones web, servicios de almacenamiento y soluciones en la nube.',
+    url: 'https://learn.microsoft.com/credentials/certifications/azure-developer/',
+  },
+  {
+    id: 'az-500',
+    exam: 'AZ-500',
+    title: 'Azure Security Engineer Associate',
+    level: 'Intermedio',
+    description: 'Implementa controles de seguridad, mantiene la postura de seguridad e identifica y remedia vulnerabilidades en Azure.',
+    url: 'https://learn.microsoft.com/credentials/certifications/azure-security-engineer/',
+  },
+  {
+    id: 'sc-900',
+    exam: 'SC-900',
+    title: 'Security, Compliance & Identity Fundamentals',
+    level: 'Principiante',
+    description: 'Conocimiento fundamental sobre conceptos de seguridad, cumplimiento e identidad en las soluciones de Microsoft Cloud.',
+    url: 'https://learn.microsoft.com/credentials/certifications/security-compliance-and-identity-fundamentals/',
+  },
+]
+
 function WelcomePage() {
   const navigate = useNavigate()
   const username = sessionStorage.getItem(USER_KEY) ?? 'usuario'
@@ -126,13 +177,39 @@ function WelcomePage() {
   }
 
   return (
-    <main className="page">
-      <section className="welcome-card">
-        <h1>Bienvenido</h1>
-        <p>Hola, {username}. Tu sesión está activa.</p>
-        <button type="button" onClick={handleLogout}>
-          Cerrar sesión
-        </button>
+    <main className="welcome-page">
+      <section className="welcome-header">
+        <div className="welcome-card">
+          <h1>Bienvenido</h1>
+          <p>Hola, {username}. Tu sesión está activa.</p>
+          <button type="button" onClick={handleLogout}>
+            Cerrar sesión
+          </button>
+        </div>
+      </section>
+      <section className="certifications-section">
+        <h2 className="certifications-title">Certificaciones Microsoft 2026</h2>
+        <p className="certifications-subtitle">
+          Últimas certificaciones disponibles para validar tus habilidades en la nube de Microsoft.
+        </p>
+        <div className="certifications-grid">
+          {CERTIFICATIONS.map((cert) => (
+            <article key={cert.id} className="cert-card">
+              <span className="cert-badge">{cert.exam}</span>
+              <h3 className="cert-name">{cert.title}</h3>
+              <span className="cert-level">{cert.level}</span>
+              <p className="cert-description">{cert.description}</p>
+              <a
+                href={cert.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cert-link"
+              >
+                Ver certificación →
+              </a>
+            </article>
+          ))}
+        </div>
       </section>
     </main>
   )

@@ -83,3 +83,117 @@ button:disabled {
   margin: 0;
   color: #c64545;
 }
+
+/* Welcome page layout */
+.welcome-page {
+  min-height: 100vh;
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.welcome-header {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 48px;
+}
+
+/* Certifications section */
+.certifications-section {
+  padding-top: 48px;
+  border-top: 1px solid #e6dfd8;
+}
+
+.certifications-title {
+  margin: 0;
+  color: #141413;
+  font-family: 'Tiempos Headline', Garamond, 'Times New Roman', serif;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  font-size: 36px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.certifications-subtitle {
+  text-align: center;
+  color: #6c6a64;
+  margin: 12px 0 0;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+  .certifications-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Certification card */
+.cert-card {
+  background: #efe9de;
+  border: 1px solid #e6dfd8;
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cert-badge {
+  display: inline-block;
+  background: #cc785c;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  width: fit-content;
+}
+
+.cert-name {
+  margin: 0;
+  color: #141413;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.cert-level {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6c6a64;
+}
+
+.cert-description {
+  color: #3d3d3a;
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+
+.cert-link {
+  color: #cc785c;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: 8px;
+}
+
+.cert-link:hover {
+  text-decoration: underline;
+}
