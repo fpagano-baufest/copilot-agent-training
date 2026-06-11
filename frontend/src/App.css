@@ -197,3 +197,10 @@ button:disabled {
 .cert-link:hover {
   text-decoration: underline;
 }
+
+.cert-link:focus-visible {
+  text-decoration: underline;
+  outline: 3px solid rgb(204 120 92 / 15%);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
